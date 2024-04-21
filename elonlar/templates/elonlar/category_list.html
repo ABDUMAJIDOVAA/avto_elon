@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}: Kategoriyalar ro'yxati
+{% endblock title %}
+
+{% block main %}
+<div class="container">
+    <h1 class="text-center my-4">Kategoriyalar ro'yxati</h1>
+    <a href="{% url 'category_create' %}" class="btn btn-primary mb-3">Kategoriya qo'shish</a>
+    <div class="list-group">
+        {% for category in categories %}
+        <a href="{% url 'category_detail' pk=category.pk %}" class="list-group-item list-group-item-action">
+            {{ category.name }}
+        </a>
+        {% endfor %}
+    </div>
+    <a href="{% url 'index' %}" class="btn btn-secondary mt-3">Ortga</a>
+</div>
+{% endblock main %}

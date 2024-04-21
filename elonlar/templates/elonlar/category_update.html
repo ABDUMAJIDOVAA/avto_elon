@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}: {{ category.name }} tahrirlash
+{% endblock title %}
+
+{% block main %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">{{ category.name }} tahrirlamoqchimisiz?</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Yangilash</button>
+    <a href="{% url 'category_list' %}" class="btn btn-secondary ml-2">Bekor qilish</a>
+  </form>
+</div>
+{% endblock main %}

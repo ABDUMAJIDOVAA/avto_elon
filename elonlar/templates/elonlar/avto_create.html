@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}: Yangi avtomobil qo'shish
+{% endblock title %}
+
+{% block main %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Yangi avtomobillar qo'shish</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.name }}
+        {{ form.content }}
+        {{ form.update }}
+        <label>Kategoriya</label>
+        {{ form.category }}
+        {{ form.photo }}
+        <div>
+            <label>Ko'rishlar soni</label>
+            {{ form.views }}
+            <label>Saytga joylash</label>
+            {{ form.published }}
+        </div>
+        <button type="submit" class="btn btn-success">Saqlash</button>
+        <a href="{% url 'avto_list' %}" class="btn btn-secondary ml-2">Ortga</a>
+    </form>
+</div>
+{% endblock main %}

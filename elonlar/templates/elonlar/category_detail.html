@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}: {{ category.name }}
+{% endblock title %}
+
+{% block main %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">{{ category.name }} Kategoriyasi</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ category.name }}</h5>
+            <a href="{% url 'category_update' pk=category.pk %}" class="btn btn-primary">Tahrirlash</a>
+            <a href="{% url 'category_delete' pk=category.pk %}" class="btn btn-danger">O'chirish</a>
+            <a href="{% url 'category_list' %}" class="btn btn-secondary">Kategoriyalar ro'yxatiga qaytish</a>
+        </div>
+    </div>
+</div>
+{% endblock main %}

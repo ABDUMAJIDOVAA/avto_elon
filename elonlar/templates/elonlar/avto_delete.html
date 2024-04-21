@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}: Avtomobil e'lonini o'chirish
+{% endblock title %}
+
+{% block main %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Avtomobil e'lonini o'chirishni tasdiqlang</h2>
+  <p>Siz rostdan ham "{{ avto.name }}" nomli avtomobilni o'chirishni xohlaysizmi?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">O'chirish</button>
+    <a href="{% url 'avto_detail' pk=recipe.pk %}" class="btn btn-secondary ml-2">Bekor qilish</a>
+  </form>
+</div>
+{% endblock main %}

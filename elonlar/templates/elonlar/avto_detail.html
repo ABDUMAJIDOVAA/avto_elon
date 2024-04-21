@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}: {{ avto.name }}
+{% endblock title %}
+
+{% block main %}
+<div class="container mt-5">
+    <h2 class="text-center mb-3">{{ avto.name }}</h2>
+    <div class="card">
+        {% if avto.photo %}
+        <img src="{{ avto.photo.url }}" class="card-img-top" alt="{{ avto.name }}">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">Avtomobil haqida</h5>
+            <p class="card-text">{{ avto.content }}</p>
+            <p class="card-text"><small class="text-muted">Kiritilgan vaqti: {{ avto.created|date:"Y-m-d H:i" }}
+            </small></p>
+            <p class="card-text"><small class="text-muted">O'zgartirilgan vaqti: {{ avto.updated|date:"Y-m-d H:i" }}
+            </small></p>
+            <a href="#!" class="btn btn-primary">Sotib olish</a>
+            <a href="{% url 'avto_list' %}" class="btn btn-secondary">Avtomobillar ro'yxatiga qaytish</a>
+            {{ avto.views }} <i class="far fa-eye"></i>
+        </div>
+    </div>
+</div>
+{% endblock main %}

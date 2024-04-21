@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}: {{ category.name }} E'londagi avtomobillar
+{% endblock title %}
+
+{% block main %}
+
+<div class="mt-5">
+    {% if messages %}
+    <ul class="messages alert alert-success">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="btn-group mb-4 d-flex justify-content-around " role="group" aria-label="Basic example">
+        {% for category in categories %}
+        <a href="{% url 'avto_by_category' category.id %}" class="btn btn-primary" role="button"
+           data-mdb-ripple-init>{{ category.name }}</a>
+        {% endfor %}
+    </div>
+
+    <div>
+        {% if avtolar %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for avto in avtolar %}
+            <div class="col">
+                <div class="card h-100">
+                    {% if avto.photo %}
+                    <img src="{{ avto.photo.url }}" class="card-img-top" alt="{{ avto.name }}"/>
+                    {% else %}
+                    <img src="https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"
+                         class="card-img-top" alt="Linkda rasm yoq"/>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ avto.name }}</h5>
+                        <p class="card-text">
+                            {{ avto.content|truncatewords:30 }}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">{{ avto.updated|time:"H:i" }} da yangilangan</small>
+                    </div>
+                    <a href="{% url 'avto_detail' avto.pk %}" class="btn btn-outline-secondary" data-mdb-ripple-init
+                       data-mdb-ripple-color="dark">Ko'rish</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-warning" role="alert">
+            <i>Ushbu kategoriya bo'yicha hech qanday avtomobillar mavjud emas!</i>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock main %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}: Avtomobillar ro'yxati
+{% endblock title %}
+
+{% block main %}
+<div class="container">
+  <h1 class="text-center my-4">Avtomobillar ro'yxati</h1>
+  <a href="{% url 'avto_create' %}" class="btn btn-primary mb-3">Avtomobil qo'shish</a>
+  <div class="list-group">
+    {% for avto in avtolar %}
+      <a href="{% url 'avto_detail' pk=avto.pk %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        {{ avto.name }}
+        <span class="badge badge-primary badge-pill">{{ avto.views }}</span>
+      </a>
+    {% endfor %}
+  </div>
+  <a href="{% url 'index' %}" class="btn btn-secondary mt-3">Ortga</a>
+</div>
+{% endblock main %}

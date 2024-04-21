@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}: Kategoriyani o'chirish
+{% endblock title %}
+
+{% block main %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Kategoriyani o'chirishni tasdiqlang</h2>
+  <p>Siz rostdan ham "{{ category.name }}" shu kategoryani ochirasizmi?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">O'chirish</button>
+    <a href="{% url 'category_detail' pk=category.pk %}" class="btn btn-secondary ml-2">Bekor qilish</a>
+  </form>
+</div>
+{% endblock main %}

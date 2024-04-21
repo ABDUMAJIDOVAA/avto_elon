@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }}: Yangi kategoriya yaratish
+{% endblock title %}
+
+{% block main %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Yangi kategoriya yaratish</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.name }}
+        <button type="submit" class="btn btn-success mt-2">Saqlash</button>
+        <a href="{% url 'category_list' %}" class="btn btn-secondary mt-2 ml-2">Bekor qilish</a>
+    </form>
+
+</div>
+{% endblock main %}
